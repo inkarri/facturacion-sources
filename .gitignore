@@ -1,0 +1,12 @@
+.metadata
+.class
+.project
+.classpath
+.recommenders
+.settings
+.tern-project
+/build/*
+/lib/
+/ant/
+.settings/*
+
