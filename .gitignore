@@ -5,8 +5,11 @@
 .recommenders
 .settings
 .tern-project
-/build/*
 /lib/
 /ant/
 .settings/*
+*.class
+*~
+*/build/
+
 
