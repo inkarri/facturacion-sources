@@ -5,6 +5,7 @@ package ec.com.facturacion.ligas.servicio.factura;
 
 import javax.ejb.Local;
 
+import ec.com.facturacion.ligas.dto.CategoriaDTO;
 import ec.com.facturacion.ligas.dto.EquipoDTO;
 
 /**
@@ -26,5 +27,16 @@ public interface FacturaServicio {
 	 * @return equipo registrado en la base de datos
 	 */
 	EquipoDTO obtenerEquipoPorId(Long idEquipo);
+	
+	/**
+	 * <b> Agrega una categoria a la base de datos. </b>
+	 * <p>
+	 * [Author: inkarri, Date: 23/11/2015]
+	 * </p>
+	 *
+	 * @param categoria
+	 * @return
+	 */
+	CategoriaDTO insertarCategoria(CategoriaDTO categoria);
 
 }

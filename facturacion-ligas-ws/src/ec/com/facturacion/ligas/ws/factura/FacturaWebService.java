@@ -5,18 +5,21 @@ package ec.com.facturacion.ligas.ws.factura;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ec.com.facturacion.ligas.dto.CategoriaDTO;
 import ec.com.facturacion.ligas.dto.EquipoDTO;
 import ec.com.facturacion.ligas.servicio.factura.FacturaServicio;
 import ec.com.facturacion.ligas.ws.commons.exception.FacturacionWebServiceException;
 
 /**
- * <b> Srvicios web asoiados al proceso de facturacion. </b>
+ * <b> Srvicios web asociados al proceso de facturacion. </b>
  * 
  * @author inkarri, Date: 23/11/2015
  */
@@ -33,6 +36,18 @@ public class FacturaWebService {
 	public EquipoDTO obtenerEquipoPorId(@PathParam(value = "idEquipo") Long idEquipo) {
 		try {
 			return facturaServicio.obtenerEquipoPorId(idEquipo);
+		} catch (RuntimeException e) {
+			throw new FacturacionWebServiceException(e.getMessage());
+		}
+	}
+
+	@POST
+	@Path("/insertarCategoria")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public CategoriaDTO insertarCategoria(CategoriaDTO categoria) {
+		try {
+			return facturaServicio.insertarCategoria(categoria);
 		} catch (RuntimeException e) {
 			throw new FacturacionWebServiceException(e.getMessage());
 		}
