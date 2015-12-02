@@ -29,6 +29,29 @@ public interface FacturaServicio {
 	EquipoDTO obtenerEquipoPorId(Long idEquipo);
 	
 	/**
+	 * <b> Inserta un equipo en la base de datos. </b>
+	 * <p>
+	 * [Author: inkarri, Date: 24/11/2015]
+	 * </p>
+	 *
+	 * @param equipo
+	 *            datos a insertar
+	 * @return data insertado en la base
+	 */
+	EquipoDTO insertarEquipo(EquipoDTO equipo);
+
+	/**
+	 * <b> Inactiva un registro correspondiente a un equipo. </b>
+	 * <p>
+	 * [Author: inkarri, Date: 24/11/2015]
+	 * </p>
+	 *
+	 * @param equipo
+	 *            datos del equipo a inactivar
+	 */
+	void inactivarEquipo(EquipoDTO equipo);
+	
+	/**
 	 * <b> Agrega una categoria a la base de datos. </b>
 	 * <p>
 	 * [Author: inkarri, Date: 23/11/2015]

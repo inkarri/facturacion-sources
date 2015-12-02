@@ -3,7 +3,10 @@
  */
 package ec.com.facturacion.ligas.dao.impl;
 
+import java.util.Calendar;
+
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 
@@ -34,6 +37,33 @@ public class EquipoDaoImpl extends CommonsDao implements EquipoDao {
 		query.setParameter("idEquipo", idEquipo);
 
 		return (EquipoDTO) query.uniqueResult();
+	}
+
+	/**
+	 * @see EquipoDao#insertarEquipo(EquipoDTO)
+	 */
+	@Override
+	public EquipoDTO insertarEquipo(EquipoDTO equipo) {
+		em.persist(equipo);
+		return equipo;
+	}
+
+	/**
+	 * @see EquipoDao#inactivarEquipo(EquipoDTO)
+	 */
+	@Override
+	public void inactivarEquipo(EquipoDTO equipo) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("UPDATE EquipoDTO eq ");
+		hql.append("SET eq.estado = :estado, eq.fechaModificacion = :fechaModificacion, ");
+		hql.append("eq.usuarioRegistro = :usuarioRegistro ");
+		hql.append("WHERE eq.id = :idEquipo ");
+
+		Query query = em.createQuery(hql.toString());
+		query.setParameter("estado", equipo.getEstado());
+		query.setParameter("fechaModificacion", Calendar.getInstance());
+		query.setParameter("usuarioRegistro", equipo.getUsuarioRegistro());
+		query.executeUpdate();
 	}
 
 }

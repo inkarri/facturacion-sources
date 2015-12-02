@@ -25,7 +25,7 @@ public class FacturaServicioImpl implements FacturaServicio {
 
 	@EJB
 	private EquipoDao equioDao;
-	
+
 	@EJB
 	private CategoriaDao categoriaDao;
 
@@ -50,18 +50,44 @@ public class FacturaServicioImpl implements FacturaServicio {
 	}
 
 	/**
-	* @see FacturaServicio#insertarCategoria(CategoriaDTO)
-	*/ 
+	 * @see FacturaServicio#insertarCategoria(CategoriaDTO)
+	 */
 	@Override
 	public CategoriaDTO insertarCategoria(CategoriaDTO categoria) {
 		try {
 			if (categoria == null) {
 				throw new FacturacionExcepction("Los datos para insertar la categoria no deben estar vacios.");
 			}
-			
+
 			return categoriaDao.insertarCategoria(categoria);
 		} catch (HibernateException e) {
 			throw new FacturacionExcepction("Ocurrio un error al tratar de insertar la categoria en la base de datos.", e);
+		}
+	}
+
+	@Override
+	public EquipoDTO insertarEquipo(EquipoDTO equipo) {
+		try {
+			if (equipo == null) {
+				throw new FacturacionExcepction("Los datos para insertar el equipo no deben estar vacios.");
+			}
+
+			return equioDao.insertarEquipo(equipo);
+		} catch (HibernateException e) {
+			throw new FacturacionExcepction("Ocurrio un error al tratar de insertar el equipo en la base de datos.", e);
+		}
+	}
+
+	@Override
+	public void inactivarEquipo(EquipoDTO equipo) {
+		try {
+			if (equipo == null) {
+				throw new FacturacionExcepction("Los datos para inactivar el equipo no deben estar vacios.");
+			}
+
+			equioDao.inactivarEquipo(equipo);
+		} catch (HibernateException e) {
+			throw new FacturacionExcepction("Ocurrio un error al tratar de inactivar el equipo en la base de datos.", e);
 		}
 	}
 
