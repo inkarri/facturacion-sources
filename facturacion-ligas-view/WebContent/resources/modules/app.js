@@ -13,7 +13,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/categorias', {
-        templateUrl: 'categorias.html',
+        templateUrl: 'facturacion/view/categorias.html',
         controller: 'categoriaController'
       })
       .otherwise({
