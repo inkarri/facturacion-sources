@@ -1,0 +1,40 @@
+<div ng-app="fcturacionLigasApp" ng-controller="categoriaController as vm">
+	<section>
+		<fieldset>
+			<legend> Registrar una categoria </legend>
+			<form ng-submit="vm.registrarCategoria();">
+				Nombre categoria: <input type="text"
+					ng-model="vm.nuevaCategoria.nombreCategoria"> <br> <br>
+				<input type="submit" value="Registrar" class="btn-info">
+			</form>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend> Categorias disponibles </legend>
+			<div ng-show="vm.categorias">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Categoria</th>
+							<th>Estado</th>
+							<th>Fecha Registro</th>
+							<th>Fecha Modificacion</th>
+							<th>Accion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="categoria in vm.categorias">
+							<td>{{$index}}</td>
+							<td>{{categoria.nombreCategoria}}</td>
+							<td>{{categoria.estado}}</td>
+							<td>{{categoria.fechaCreacion | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+							<td>{{categoria.fechaModificacion | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+							<td><input type="button" value="eliminar" class="btn-info" ng-click="vm.elimianrCategoria(categoria, $index);"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</section>
+</div>
