@@ -8,7 +8,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.grid'
+    'ui.grid',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

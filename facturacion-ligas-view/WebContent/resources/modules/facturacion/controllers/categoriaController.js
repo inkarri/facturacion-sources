@@ -6,9 +6,13 @@ function ctegoriaControlador($scope, $appConstants, CategoriaFactory, CategoriaS
 	var vm = this;
 	vm.nuevaCategoria = {};
 	vm.categorias = CategoriaFactory.getCategorias();
+	
+	vm.alerts = [];
+//	{ type: 'success', msg: 'Well done! You successfully read this important alert message.' }
 
 	vm.registrarCategoria = function() {
 		try {
+			vm.closeAlert(0);
 			if (!vm.nuevaCategoria.nombreCategoria) {
 				throw "Ingrese un nombre de categoria.";
 			}
@@ -24,6 +28,7 @@ function ctegoriaControlador($scope, $appConstants, CategoriaFactory, CategoriaS
 				throw err.data
 			});
 		} catch (e) {
+			vm.alerts.push({ type: 'danger', msg: e });
 			console.log(e);
 		}
 	};
@@ -55,5 +60,10 @@ function ctegoriaControlador($scope, $appConstants, CategoriaFactory, CategoriaS
 	};
 	
 	vm.elimianrCategoria = elimianrCategoria;
+	
+
+	vm.closeAlert = function(index) {
+		vm.alerts.splice(index, 1);
+	};
 	
 };
